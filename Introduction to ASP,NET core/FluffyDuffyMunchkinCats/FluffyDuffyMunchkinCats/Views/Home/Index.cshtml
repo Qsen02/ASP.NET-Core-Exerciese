@@ -1,0 +1,18 @@
+﻿@model List<FluffyDuffyMunchkinCats.Models.Cat>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Fluffy Duffy Munchkin Cats</h1>
+
+<ul>
+    @if (Model.Count == 0)
+    {
+     <p>No cats yet :(</p>   
+    }else{
+        @foreach (var cat in Model)
+        {
+         <li><a asp-action="CatDetails" asp-route-id="@cat.Id">@cat.Name</a></li>   
+        }
+    }
+    <a asp-action="RedirectToAdd"><button class="btn btn-primary">Add Cat</button></a>
+</ul>

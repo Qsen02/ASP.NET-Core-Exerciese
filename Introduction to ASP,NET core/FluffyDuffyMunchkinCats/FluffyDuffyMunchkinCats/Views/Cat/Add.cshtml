@@ -1,0 +1,25 @@
+﻿@model FluffyDuffyMunchkinCats.Models.Cat
+@{
+    ViewData["Title"] = "Add cat page";
+}
+<h1>Add Cat</h1>
+
+<form asp-action="OnAdd" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" asp-for="Name"/>
+    </div>
+    <div class="form-group">
+        <label for="Age">Age</label>
+        <input type="number" class="form-control" asp-for="Age" />
+    </div>
+    <div class="form-group">
+        <label for="Breed">Breed</label>
+        <input type="text" class="form-control" asp-for="Breed" />
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">Image URL</label>
+        <input type="text" class="form-control" asp-for="ImageUrl" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Cat</button>
+</form>
