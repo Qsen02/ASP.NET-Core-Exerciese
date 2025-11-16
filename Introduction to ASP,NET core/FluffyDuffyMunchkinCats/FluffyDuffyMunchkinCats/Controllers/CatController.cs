@@ -11,7 +11,7 @@ namespace FluffyDuffyMunchkinCats.Controllers
         {
             _context = context;
         }
-        [Route("/Cat/Add")]
+        [Route("/cat/add")]
         public IActionResult Add()
         {
             return View();
@@ -25,6 +25,12 @@ namespace FluffyDuffyMunchkinCats.Controllers
                 await _context.SaveChangesAsync();
                 return Redirect("/Home/Index");
             }
+            return View(cat);
+        }
+        [Route("/cats/{catId:int}")]
+        public async Task<IActionResult> CatDetails(int catId) 
+        {
+            var cat = await _context.Cats.FindAsync(catId);
             return View(cat);
         }
     }

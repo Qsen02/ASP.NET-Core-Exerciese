@@ -11,7 +11,7 @@
     }else{
         @foreach (var cat in Model)
         {
-         <li><a asp-action="CatDetails" asp-route-id="@cat.Id">@cat.Name</a></li>   
+         <li><a asp-action="Details" asp-route-catId="@cat.Id">@cat.Name</a></li>   
         }
     }
     <a asp-action="RedirectToAdd"><button class="btn btn-primary">Add Cat</button></a>

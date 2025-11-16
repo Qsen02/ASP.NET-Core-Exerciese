@@ -25,7 +25,12 @@ namespace FluffyDuffyMunchkinCats.Controllers
 
         public IActionResult RedirectToAdd() 
         {
-            return Redirect("/Cat/Add");
+            return Redirect("/cat/add");
+        }
+
+        public IActionResult Details(int catId)
+        {
+            return Redirect($"/cats/{catId}");
         }
         public IActionResult Privacy()
         {

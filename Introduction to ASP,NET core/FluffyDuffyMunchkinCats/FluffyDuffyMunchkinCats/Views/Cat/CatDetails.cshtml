@@ -1,0 +1,10 @@
+﻿@model FluffyDuffyMunchkinCats.Models.Cat
+@{
+    ViewData["Title"] = "Cat details page";
+}
+<div>
+    <h1>@Model.Name</h1>
+    <img class="img-fluid" style="max-width:300px; max-height:300px" src="@Model.ImageUrl" alt=@Model.Name/>
+    <p class="fw-bold">Age: @Model.Age</p>
+    <p class="fw-bold">Breed: @Model.Breed</p>
+</div>
