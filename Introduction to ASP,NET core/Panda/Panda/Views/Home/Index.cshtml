@@ -2,7 +2,10 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="d-flex flex-column gap-1 bg-dark text-white" 
+ style="margin: 20 auto; padding: 20px; border-radius: 10px"
+> 
+    <h2 style="padding: 15px; border-bottom: solid 2px white">Welcome to PANDA Delivery Services.</h2>
+    <p><a asp-controller="Users" asp-action="Login">Login</a> if you have an account.</p>
+    <p><a asp-controller="Users" asp-action="Register">Register</a> if you don't.</p>
+</section>
