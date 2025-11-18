@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Panda.Data;
 using Panda.Models;
+using Panda.ViewModels;
 
 namespace Panda.Controllers
 {
@@ -14,27 +15,28 @@ namespace Panda.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginViewModel());
         }
         public IActionResult Register()
         {
-            return View();
+            return View(new RegisterViewModel());
         }
         [HttpPost]
-        public async Task<IActionResult> OnRegister([Bind("Username,Password,Email")] User user, string ConfirmPassword) 
+        public async Task<IActionResult> OnRegister([Bind("Username,Password,ConfirmPassword,Email")] RegisterViewModel user) 
         {
-            Console.WriteLine(ConfirmPassword);
-            if (user.Password != ConfirmPassword) 
-            {
-                throw new Exception("Password must match!");
-            }
             if (ModelState.IsValid)
             {
-                _context.Users.Add(user);
+                User newUser = new User { Username = user.Username, Password = user.Password, Email = user.Email };
+                List<User> users=_context.Users.ToList();
+                if (users.Count == 0)
+                {
+                    newUser.Role = (RoleType)1;
+                }
+                _context.Users.Add(newUser);
                 await _context.SaveChangesAsync();
                 return Redirect("/Home/Index");
             }
-            return View();
+            return View("Register",user);
         } 
     }
 }
