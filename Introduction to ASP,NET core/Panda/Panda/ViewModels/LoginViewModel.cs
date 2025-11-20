@@ -6,7 +6,8 @@ namespace Panda.ViewModels
     {
         [Required(ErrorMessage = "Username is required!")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Password is required!")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$",
+        ErrorMessage = "Password is required!")]
         public string Password { get; set; }
     }
 }

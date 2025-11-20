@@ -9,7 +9,8 @@ namespace Panda.ViewModels
         [Required(ErrorMessage = "Email is required!")]
         [EmailAddress(ErrorMessage = "Email must be valid!")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password is required!")]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$",
+        ErrorMessage = "Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")]
         public string Password { get; set; }
         [Required]
         [Compare("Password",ErrorMessage = "Password must match!")]

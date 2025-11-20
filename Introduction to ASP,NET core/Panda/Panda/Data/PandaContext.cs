@@ -1,14 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Panda.Models;
 
 namespace Panda.Data
 {
-    public class PandaContext: DbContext
+    public class PandaContext : IdentityDbContext<AppUser>
     {
         public PandaContext(DbContextOptions options): 
             base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>()
                 .Property(el => el.Role)
                 .HasConversion<string>();

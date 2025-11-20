@@ -1,11 +1,17 @@
-﻿@{
+﻿@model AppUser
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<section class="d-flex flex-column gap-1 bg-dark text-white" 
- style="margin: 20 auto; padding: 20px; border-radius: 10px"
-> 
-    <h2 style="padding: 15px; border-bottom: solid 2px white">Welcome to PANDA Delivery Services.</h2>
-    <p><a asp-controller="Users" asp-action="Login">Login</a> if you have an account.</p>
-    <p><a asp-controller="Users" asp-action="Register">Register</a> if you don't.</p>
-</section>
+@if (Model == null)
+{
+    <section class="d-flex flex-column gap-1 bg-dark text-white" 
+    style="margin: 20px auto; padding: 20px; border-radius: 10px"
+    > 
+        <h2 style="padding: 15px; border-bottom: solid 2px white">Welcome to PANDA Delivery Services.</h2>
+        <p><a asp-controller="Users" asp-action="Login">Login</a> if you have an account.</p>
+        <p><a asp-controller="Users" asp-action="Register">Register</a> if you don't.</p>
+    </section>
+}else
+{
+    <h2>Welcome @Model.UserName!</h2>
+}

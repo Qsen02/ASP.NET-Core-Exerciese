@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace Panda.Models
 {
-    public enum RoleType { User,Admin}
+    public enum RoleType { User = 0,Admin = 1}
     public class User
     {
         [Key]

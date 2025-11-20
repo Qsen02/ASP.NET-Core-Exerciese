@@ -1,25 +1,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Panda.Models;
+using Panda.Services;
 
 namespace Panda.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserService userService)
         {
             _logger = logger;
+            _userService = userService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            AppUser user = await _userService.GetCurrentUser();
+            return View(user);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

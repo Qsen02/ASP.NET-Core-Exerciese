@@ -1,10 +1,15 @@
 ﻿@model Panda.ViewModels.RegisterViewModel
-
 @{
     ViewData["Title"] = "Register page";
 }
 <form asp-action="OnRegister" method="post" class="form">
     <h2>Register</h2>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <label class="text-danger text-center">@TempData["msg"]</label>
+        }    
+    }
     <p class="input">
         <label for="Username">Username</label>
         <input type="text" asp-for="Username" placeholder="Username..." value=@Model.Username/>

@@ -1,22 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Panda.Data;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Panda.Models;
+using Panda.Services;
 using Panda.ViewModels;
+using System.Linq.Expressions;
 
 namespace Panda.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly PandaContext _context;
-        public UsersController(PandaContext context)
+        private readonly UserService _userService;
+        public UsersController(UserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
-
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View(new LoginViewModel());
         }
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View(new RegisterViewModel());
@@ -24,19 +27,34 @@ namespace Panda.Controllers
         [HttpPost]
         public async Task<IActionResult> OnRegister([Bind("Username,Password,ConfirmPassword,Email")] RegisterViewModel user) 
         {
-            if (ModelState.IsValid)
-            {
-                User newUser = new User { Username = user.Username, Password = user.Password, Email = user.Email };
-                List<User> users=_context.Users.ToList();
-                if (users.Count == 0)
+            try {
+                if (ModelState.IsValid)
                 {
-                    newUser.Role = (RoleType)1;
+                    User newUser = await _userService.Register(user.Username, user.Password, user.Email);
+                    return Redirect("/Home/Index");
                 }
-                _context.Users.Add(newUser);
-                await _context.SaveChangesAsync();
-                return Redirect("/Home/Index");
+            } catch (Exception ex) 
+            {
+                TempData["msg"]=ex.Message;
             }
-            return View("Register",user);
-        } 
+            return View("Register", user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> OnLogin([Bind("Username,Password")] LoginViewModel user) 
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _userService.Login(user.Username, user.Password);
+                    return Redirect("/Home/Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["msg"] = ex.Message;
+            }
+            return View("Login", user);
+        }
     }
 }

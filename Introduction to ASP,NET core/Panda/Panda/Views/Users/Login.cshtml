@@ -2,8 +2,14 @@
 @{
     ViewData["Title"] = "Login page";
 }
-<form asp-action="" method="post" class="form">
+<form asp-action="OnLogin" method="post" class="form">
     <h2>Login</h2>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <label class="text-danger text-center">@TempData["msg"]</label>
+        }
+    }
     <p class="input">
         <label for="Username">Username</label>
         <input type="text" asp-for="Username" placeholder="Username..." value=@Model.Username/>

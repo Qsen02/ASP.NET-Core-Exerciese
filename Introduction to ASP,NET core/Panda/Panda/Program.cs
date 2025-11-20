@@ -1,10 +1,26 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Panda.Data;
+using Panda.Models;
+using Panda.Services;
 
 namespace Panda
 {
     public class Program
     {
+        static async Task CreateRoles(IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            string[] roles = { "Admin", "User" };
+
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                    await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +29,12 @@ namespace Panda
             builder.Services.AddDbContext<PandaContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
-
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
+            .AddEntityFrameworkStores<PandaContext>()
+            .AddDefaultTokenProviders();
+            builder.Services.AddAuthentication();
+            builder.Services.AddAuthorization();
+            builder.Services.AddScoped<UserService>();
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
@@ -21,12 +42,11 @@ namespace Panda
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            CreateRoles(app);
             app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
