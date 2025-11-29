@@ -84,5 +84,19 @@ namespace Panda.Services
             var user = _httpContextAccessor.HttpContext.User;
             return await _userManager.GetUserAsync(user);
         }
+        public async Task Logout() { 
+            await _signInManager.SignOutAsync();
+        }
+        public async Task<List<User>> GetAllUsers() 
+        { 
+            List<User> users = _context.Users.ToList();
+            return users;
+        }
+
+        public async Task<User> GetUserById(string id) 
+        { 
+            User user=await _context.Users.FindAsync(id);
+            return user;
+        }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model Panda.ViewModels.CreatePackageViewModel
+@{
+    ViewData["Title"] = "Create package";
+}
+<section>
+    <h2 class="text-center">Create Package</h2>
+    <form asp-action="onCreate" method="post" class="form">
+        <p class="input">
+            <label for="Description">Description</label>
+            <input asp-for="Description" type="text" />
+        </p>
+        <div>
+            <p class="input">
+                <label for="Weight">Weight</label>
+                <input asp-for="Weight" type="number" />
+            </p>
+            <p class="input">
+                <label for="ShippingAddress">Shipping Address</label>
+                <input asp-for="ShippingAddress" type="text" />
+            </p>
+        </div>
+        <div>
+            <p class="input">
+                <label for="Recipient">Recipient</label>
+                <select asp-for="Recipient" value="default">
+                    <option value="default">-- Choose Recipient --</option>
+                    @foreach (var user in ViewBag.users)
+                    {
+                        <option value="@user.Id">@user.Username</option>
+                    }
+                </select>
+            </p>
+        </div>
+        <button type="submit" class="bg-dark text-white">Create</button>
+    </form>
+</section>

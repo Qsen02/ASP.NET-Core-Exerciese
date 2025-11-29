@@ -19,16 +19,66 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Register">Register</a>
-                        </li>
+                    <ul class="navbar-nav flex-grow-1 navWrapper">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("User"))
+                            {
+                                <div class="justify-content-end">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Receipts" asp-action="Index">Receipts</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                                    </li>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="justify-content-start">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Packages" asp-action="Pending">Pending</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Packages" asp-action="Logout">Shipped</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Packages" asp-action="Index">Delivered</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Packages" asp-action="Create">Package</a>
+                                    </li>
+                                </div>
+                                <div class="justify-content-end">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Receipts" asp-action="Index">Receipts</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                                    </li>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="justify-content-end">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="" asp-controller="Users" asp-action="Register">Register</a>
+                                </li>
+                            </div>
+                        }
                     </ul>
                 </div>
             </div>

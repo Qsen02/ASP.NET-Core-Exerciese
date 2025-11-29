@@ -24,6 +24,12 @@ namespace Panda.Controllers
         {
             return View(new RegisterViewModel());
         }
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+            return Redirect("/Home/Index");
+        }
         [HttpPost]
         public async Task<IActionResult> OnRegister([Bind("Username,Password,ConfirmPassword,Email")] RegisterViewModel user) 
         {

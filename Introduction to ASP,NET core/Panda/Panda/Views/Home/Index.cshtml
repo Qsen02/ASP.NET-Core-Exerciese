@@ -1,8 +1,7 @@
-﻿@model AppUser
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
-@if (Model == null)
+@if (!User.Identity.IsAuthenticated)
 {
     <section class="d-flex flex-column gap-1 bg-dark text-white" 
     style="margin: 20px auto; padding: 20px; border-radius: 10px"

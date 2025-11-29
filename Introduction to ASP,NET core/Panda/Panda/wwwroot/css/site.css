@@ -71,3 +71,16 @@ a {
     border-radius: 5px;
     text-align:center;
 }
+
+.navWrapper {
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    gap:50px;
+}
+.navWrapper div {
+    width:100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
