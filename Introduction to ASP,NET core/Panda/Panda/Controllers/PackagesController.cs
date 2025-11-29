@@ -23,7 +23,7 @@ namespace Panda.Controllers
         }
         public async Task<IActionResult> OnCreate([Bind("Description,Weight,ShippingAddress,Recipient")] CreatePackageViewModel package) 
         {
-            User user = await _userService.GetUserById(package.Recipient);
+            User user = await _userService.GetUserById(int.Parse(package.Recipient));
             if (ModelState.IsValid) 
             {
                 await _packagesService.CreatePackage(package.Description, package.Weight, package.ShippingAddress, user);

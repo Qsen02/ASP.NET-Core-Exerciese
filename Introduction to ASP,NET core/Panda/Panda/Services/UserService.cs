@@ -93,7 +93,7 @@ namespace Panda.Services
             return users;
         }
 
-        public async Task<User> GetUserById(string id) 
+        public async Task<User> GetUserById(int id) 
         { 
             User user=await _context.Users.FindAsync(id);
             return user;
