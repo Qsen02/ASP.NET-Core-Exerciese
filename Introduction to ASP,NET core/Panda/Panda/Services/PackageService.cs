@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Panda.Data;
 using Panda.Models;
 using System.Collections.Specialized;
@@ -28,6 +29,11 @@ namespace Panda.Services
             _pandaContext.Packages.Add(package);
             await _pandaContext.SaveChangesAsync();
             return package;
+        }
+        public async Task<List<Package>> GetAllPackages() 
+        {
+            List<Package> packages = _pandaContext.Packages.Include(el=>el.Recipient).ToList();
+            return packages;
         }
     }
 }

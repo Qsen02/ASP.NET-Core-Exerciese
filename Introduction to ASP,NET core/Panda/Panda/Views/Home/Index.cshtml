@@ -12,5 +12,59 @@
     </section>
 }else
 {
-    <h2>Welcome @Model.UserName!</h2>
+    @if (User.IsInRole("User"))
+    {
+        <h2 class="text-center border-bottom border-black border-2 pb-3">Hello, @Model.UserName!</h2>
+    }
+    else
+    {
+        <h2 class="text-center border-bottom border-black border-2 pb-3">Hello,  Administrator @Model.UserName!</h2>
+    }
+        <section>
+        <article>
+            <h2>Pending</h2>
+            <div class="w-25 h-25 border-black border-2">
+                @foreach (var package in ViewBag.Packages)
+                {
+                    @if (package.Status == StatusType.Pending)
+                    {
+                         <div>
+                             <h3>@package.Description</h3>
+                                <button class="bg-dark text-white">Details</button>
+                         </div>   
+                    }
+                }
+            </div>
+        </article>
+        <article>
+            <h2>Shipped</h2>
+            <div class="w-25 h-25 border-black border-2">
+                @foreach (var package in ViewBag.Packages)
+                {
+                    @if (package.Status == StatusType.Shipped)
+                    {
+                        <div>
+                            <h3>@package.Description</h3>
+                            <button class="bg-dark text-white">Details</button>
+                        </div>
+                    }
+                }
+            </div>
+        </article>
+        <article>
+            <h2>Delivered</h2>
+            <div class="w-25 h-25 border-black border-2">
+                @foreach (var package in ViewBag.Packages)
+                {
+                    @if (package.Status == StatusType.Delivered)
+                    {
+                        <div>
+                            <h3>@package.Description</h3>
+                            <button class="bg-dark text-white">Details</button>
+                        </div>
+                    }
+                }
+            </div>
+        </article>
+    </section>
 }

@@ -9,15 +9,23 @@ namespace Panda.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserService _userService;
+        private readonly PackageService _packageService;
 
-        public HomeController(ILogger<HomeController> logger, UserService userService)
+        public HomeController(ILogger<HomeController> logger, UserService userService,PackageService packageService)
         {
             _logger = logger;
             _userService = userService;
+            _packageService = packageService;
         }
         public async Task<IActionResult> Index()
         {
             AppUser user = await _userService.GetCurrentUser();
+            if (user != null)
+            {
+                List<Package> packages = await _packageService.GetAllPackages();
+                List<Package> userPackages = packages.Where(el => el.Recipient.Username == user.UserName).ToList();
+                ViewBag.Packages = packages;
+            }
             return View(user);
         }
 
