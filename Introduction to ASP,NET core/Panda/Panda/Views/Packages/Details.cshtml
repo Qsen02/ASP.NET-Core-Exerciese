@@ -1,0 +1,48 @@
+﻿@model Panda.Models.Package
+@{
+    ViewData["Title"] = "Package Details";
+}
+<section>
+    <h2 class="text-center">Package Details</h2>
+    <section class="border-black border-2 border-bottom d-flex justify-content-around gap-3" >
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Address</h2>
+            <p>@Model.ShippingAddress</p>
+        </div>
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Status</h2>
+            <p>@Model.Status</p>
+        </div>
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Estimated Delivery Date</h2>
+            @if (Model.Status == StatusType.Pending)
+            {
+                <p>N/A</p>
+            }
+            else if (Model.Status == StatusType.Shipped)
+            {
+                <p>@Model.EstimateDeliveryDate</p>
+            }
+            else
+            {
+                <p>Delivered</p>
+            }
+        </div>
+    </section>
+    <section class="border-black border-2 border-bottom d-flex justify-content-around gap-3">
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Weight</h2>
+            <p>@Model.Weight</p>
+        </div>
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Recipient</h2>
+            <p>@Model.Recipient.Username</p>
+        </div>
+    </section>
+    <section class="border-black border-2 border-bottom d-flex justify-content-around gap-3">
+        <div class="d-flex flex-column align-items-center gap-2">
+            <h2>Description</h2>
+            <p>@Model.Description</p>
+        </div>
+    </section>
+</section>

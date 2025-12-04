@@ -84,3 +84,20 @@ a {
     align-items: center;
     gap: 20px;
 }
+.wrapper {
+    display:flex;
+    justify-content:space-between;
+    gap:50px;
+}
+.packageWrapper {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+}
+.onePackageWrapper {
+    width:100%;
+    display:flex;
+    justify-content:space-around;
+    gap:20px;
+}

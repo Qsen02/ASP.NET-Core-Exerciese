@@ -20,8 +20,8 @@
     {
         <h2 class="text-center border-bottom border-black border-2 pb-3">Hello,  Administrator @Model.UserName!</h2>
     }
-        <section>
-        <article>
+        <section class="wrapper">
+        <article class="packageWrapper">
             <h2>Pending</h2>
             <div class="w-25 h-25 border-black border-2">
                 @foreach (var package in ViewBag.Packages)
@@ -30,13 +30,18 @@
                     {
                          <div>
                              <h3>@package.Description</h3>
-                                <button class="bg-dark text-white">Details</button>
+                            <a class="btn bg-dark text-white"
+                               asp-action="Details"
+                               asp-controller="Packages"
+                               asp-route-id="@package.Id">
+                                Details
+                            </a>
                          </div>   
                     }
                 }
             </div>
         </article>
-        <article>
+        <article class="packageWrapper">
             <h2>Shipped</h2>
             <div class="w-25 h-25 border-black border-2">
                 @foreach (var package in ViewBag.Packages)
@@ -45,22 +50,32 @@
                     {
                         <div>
                             <h3>@package.Description</h3>
-                            <button class="bg-dark text-white">Details</button>
+                            <a class="btn bg-dark text-white"
+                               asp-action="Details"
+                               asp-controller="Packages"
+                               asp-route-id="@package.Id">
+                                Details
+                            </a>
                         </div>
                     }
                 }
             </div>
         </article>
-        <article>
+        <article class="packageWrapper">
             <h2>Delivered</h2>
-            <div class="w-25 h-25 border-black border-2">
+            <div class="border-black border-2 border-radius-5">
                 @foreach (var package in ViewBag.Packages)
                 {
                     @if (package.Status == StatusType.Delivered)
                     {
-                        <div>
+                        <div class="onePackageWrapper">
                             <h3>@package.Description</h3>
-                            <button class="bg-dark text-white">Details</button>
+                            <a class="btn bg-dark text-white"
+                               asp-action="Details"
+                               asp-controller="Packages"
+                               asp-route-id="@package.Id">
+                                Acquire
+                            </a>
                         </div>
                     }
                 }

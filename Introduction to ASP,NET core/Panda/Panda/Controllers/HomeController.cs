@@ -22,7 +22,7 @@ namespace Panda.Controllers
             AppUser user = await _userService.GetCurrentUser();
             if (user != null)
             {
-                List<Package> packages = await _packageService.GetAllPackages();
+                List<Package> packages = await _packageService.GetAllPackagesForUser(user);
                 List<Package> userPackages = packages.Where(el => el.Recipient.Username == user.UserName).ToList();
                 ViewBag.Packages = packages;
             }
