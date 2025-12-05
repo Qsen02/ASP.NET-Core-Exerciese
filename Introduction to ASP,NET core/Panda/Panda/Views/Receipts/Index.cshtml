@@ -1,0 +1,29 @@
+﻿@model List<Panda.Models.Receipt>
+@{
+    ViewData["Title"] = "Receipts page";
+}
+<section>
+    <h2 class="border-black border-2 border-bottom p-3">My Receipts</h2>
+    <table>
+        <thead>
+        <th class="border border-1 border-dark p-3">Id</th>
+        <th class="border border-1 border-dark p-3">Fee</th>
+        <th class="border border-1 border-dark p-3">Issued On</th>
+        <th class="border border-1 border-dark p-3">Recipient</th>
+        <th class="border border-1 border-dark p-3">Actions</th>
+        </thead>
+        <tbody>
+            @foreach (Receipt receipt in Model)
+            {
+                <tr>
+                    <td class="border border-1 border-dark p-3">@receipt.Id</td>
+                    <td class="border border-1 border-dark p-3">@receipt.Fee</td>
+                    <td class="border border-1 border-dark p-3">@receipt.IssuedOn</td>
+                    <td class="border border-1 border-dark p-3">@receipt.Recipient.Username</td>
+                    <td class="border border-1 border-dark p-3"><a asp-route-id=@receipt.Id asp-controller="Receipts" asp-action="Details" class="btn bg-dark text-white">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+

@@ -7,7 +7,7 @@ namespace Panda.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Fee { get; set; }
+        public double Fee { get; set; }
         public DateTime IssuedOn { get; set; }
         public int RecipientId { get; set; }
         [ForeignKey("RecipientId")]

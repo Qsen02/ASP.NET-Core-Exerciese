@@ -1,0 +1,38 @@
+﻿@model Panda.Models.Receipt
+@{
+    ViewData["Title"] = "Receipt details page";
+}
+<section>
+    <h2 class="text-center border-2 border-bottom border-black">Receipt Details</h2>
+    <div class="border-2 border-bottom border-black">
+        <div class="d-flex justify-content-around">
+            <h3>Receipt Number:</h3>
+            <h3>@Model.Id</h3>
+        </div>
+    </div>
+    <div class="border-2 border-bottom border-black">
+        <div class="d-flex justify-content-around">
+            <p>Issude On:</p>
+            <p>@Model.IssuedOn</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Delivery Address</p>
+            <p>@Model.Package.ShippingAddress</p>
+        </div>
+    </div>
+    <div class="border-2 border-bottom border-black">
+        <div class="d-flex justify-content-around">
+            <p>Package Weight(KG):</p>
+            <p>@Model.Package.Weight</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Package Description:</p>
+            <p>@Model.Package.Description</p>
+        </div>
+        <div class="d-flex justify-content-around">
+            <p>Recipient:</p>
+            <p>@Model.Recipient.Username</p>
+        </div>
+    </div>
+    <h3>Total: $@Model.Fee.ToString("F2")</h3>
+</section>

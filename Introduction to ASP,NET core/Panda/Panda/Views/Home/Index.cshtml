@@ -71,9 +71,9 @@
                         <div class="onePackageWrapper">
                             <h3>@package.Description</h3>
                             <a class="btn bg-dark text-white"
-                               asp-action="Details"
-                               asp-controller="Packages"
-                               asp-route-id="@package.Id">
+                               asp-action="OnAcquire"
+                               asp-controller="Receipts"
+                               asp-route-packageId="@package.Id">
                                 Acquire
                             </a>
                         </div>

@@ -6,23 +6,23 @@
     <h2 class="border-black border-2 border-bottom p-5">Delivered shipment</h2>
     <table>
         <thead>
-        <th>#</th>
-        <th>Description</th>
-        <th>Weight</th>
-        <th>Shipping Address</th>
-        <th>Recipient</th>
-        <th>Actions</th>
+        <th class="border border-1 border-dark p-3">#</th>
+        <th class="border border-1 border-dark p-3">Description</th>
+        <th class="border border-1 border-dark p-3">Weight</th>
+        <th class="border border-1 border-dark p-3">Shipping Address</th>
+        <th class="border border-1 border-dark p-3">Recipient</th>
+        <th class="border border-1 border-dark p-3">Actions</th>
         </thead>
         <tbody>
             @foreach (Package package in Model)
             {
                 <tr>
-                    <td>@package.Id</td>
-                    <td>@package.Description</td>
-                    <td>@package.Weight</td>
-                    <td>@package.ShippingAddress</td>
-                    <td>@package.Recipient.Username</td>
-                    <td><a asp-route-id=@package.Id asp-controller="Packages" asp-action="Details" class="btn bg-dark text-white">Details</a></td>
+                    <td class="border border-1 border-dark p-3">@package.Id</td>
+                    <td class="border border-1 border-dark p-3">@package.Description</td>
+                    <td class="border border-1 border-dark p-3">@package.Weight</td>
+                    <td class="border border-1 border-dark p-3">@package.ShippingAddress</td>
+                    <td class="border border-1 border-dark p-3">@package.Recipient.Username</td>
+                    <td class="border border-1 border-dark p-3"><a asp-route-id=@package.Id asp-controller="Packages" asp-action="Details" class="btn bg-dark text-white">Details</a></td>
                 </tr>
             }
         </tbody>

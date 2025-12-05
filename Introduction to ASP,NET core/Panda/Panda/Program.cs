@@ -36,6 +36,7 @@ namespace Panda
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<PackageService>();
+            builder.Services.AddScoped<ReceiptsService>();
             var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
