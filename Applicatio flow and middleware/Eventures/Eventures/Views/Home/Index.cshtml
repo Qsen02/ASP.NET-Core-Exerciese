@@ -1,8 +1,30 @@
-﻿@{
+﻿@model Eventures.Models.AppUser
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (!User.Identity.IsAuthenticated)
+{
+    <section class="d-flex flex-column g-2 align-items-start p-3" style="background-color:#AFEEEE; border-radius:10px">
+        <h2 class="border-black border-3 border-bottom">Eventures - The best ticket service in the world.</h2>
+        <p><a asp-controller="Users" asp-action="Login">Login</a> to start "eventing".</p>
+        <p><a asp-controller="Users" asp-action="Register">Register</a> if you don't have an account.</p>
+    </section>
+}
+else
+{
+    @if (User.IsInRole("User"))
+    {
+        <section class="d-flex flex-column g-2 align-items-center p-3 text-center text-bg-grey" style="background-color:#AFEEEE; border-radius:10px">
+            <h2 class="border-grey border-3 border-bottom">Welcome, @Model.FirstName!</h2>
+            <h3>Eventure wishes you an exiting expirience.</h3>
+        </section>
+    }
+    else
+    {
+        <section class="d-flex flex-column g-2 align-items-center p-3 text-center text-bg-grey" style="background-color:#AFEEEE; border-radius:10px">
+            <h2 class="border-grey border-3 border-bottom">Greetings, Administrator-@Model.FirstName!</h2>
+            <h3>Enjoy your work.</h3>
+        </section>
+    }
+}

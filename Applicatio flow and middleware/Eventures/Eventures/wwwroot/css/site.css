@@ -30,7 +30,23 @@ body {
   text-align: start;
 }
 
-.aqua {
-    backgound-color: #AFEEEE;
-    color: black;
+a {
+    text-decoration:none;
+    color: #258cfb;
+    font-weight:bold;
+}
+
+.input {
+    flex-basis:40%;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+}
+
+.input input{
+     width:100%;
+     height:30px;
+     border-radius:7px;
+     padding-left:7px;
 }

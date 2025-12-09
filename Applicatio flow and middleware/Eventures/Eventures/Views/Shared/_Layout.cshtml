@@ -11,15 +11,15 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
-            <div class="container-fluid aqua">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3" style="background-color:#AFEEEE">
+            <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eventures</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 fw-bold">
                         @if (User.Identity.IsAuthenticated)
                         {
                             @if (User.IsInRole("User"))
@@ -75,9 +75,9 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
-        <div class="container aqua">
-            &copy; 2025 - Eventures - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="footer text-muted text-center" style="background-color:#AFEEEE">
+        <div class="container">
+            &copy; CopyRight Eventure Inc 2018-2019. All Rights Reserved.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
