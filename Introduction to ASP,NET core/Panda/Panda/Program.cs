@@ -8,19 +8,6 @@ namespace Panda
 {
     public class Program
     {
-        static async Task CreateRoles(IApplicationBuilder app)
-        {
-            using var scope = app.ApplicationServices.CreateScope();
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-            string[] roles = { "Admin", "User" };
-
-            foreach (var role in roles)
-            {
-                if (!await roleManager.RoleExistsAsync(role))
-                    await roleManager.CreateAsync(new IdentityRole(role));
-            }
-        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);

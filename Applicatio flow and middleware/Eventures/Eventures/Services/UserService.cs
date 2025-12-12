@@ -38,9 +38,9 @@ namespace Eventures.Services
                 LastName = lastName,
                 FirstName = firstName,
                 UCN = UCN,
-                Role = RoleType.User
             };
             await _userManager.CreateAsync(appUser, password);
+            await _userManager.AddToRoleAsync(appUser, "User");
             await _signInManager.SignInAsync(appUser, true);
             return appUser;
         }
@@ -52,11 +52,15 @@ namespace Eventures.Services
                 throw new Exception("User or password don't match!");
             }
             bool isValidPassword = await _userManager.CheckPasswordAsync(user, password);
-            if (isValidPassword)
+            if (!isValidPassword)
             {
                 throw new Exception("User or password don't match!");
             }
             await _signInManager.SignInAsync(user, true);
+        }
+        public async Task Logout() 
+        {
+            await _signInManager.SignOutAsync();
         }
     }
 }

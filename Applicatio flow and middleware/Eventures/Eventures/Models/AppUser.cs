@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Eventures.Models
 {
@@ -8,6 +9,5 @@ namespace Eventures.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UCN { get; set; }
-        public RoleType Role { get; set; }
     }
 }

@@ -12,6 +12,11 @@ namespace Eventures.Controllers
         {
             _userService = userService;
         }
+        public async Task<IActionResult> Logout()
+        {
+            await _userService.Logout();
+            return Redirect("/Home/Index");
+        }
         [AllowAnonymous]
         public IActionResult Register()
         {
@@ -20,7 +25,7 @@ namespace Eventures.Controllers
         [AllowAnonymous]
         public IActionResult Login()
         {
-            return View();
+            return View(new LoginViewModel());
         }
         [HttpPost]
         public async Task<IActionResult> OnRegister([Bind("Username,Email,Password,Repass,FirstName,LastName,UCN")] RegisterViewModel user) 
@@ -31,6 +36,16 @@ namespace Eventures.Controllers
                 return Redirect("/Home/Index");
             }
             return View("Register",user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> OnLogin([Bind("Username,Password")] LoginViewModel user) 
+        {
+            if (ModelState.IsValid)
+            {
+                await _userService.Login(user.Username,user.Password);
+                return Redirect("/Home/Index");
+            }
+            return View("Login", user);
         }
     }
 }

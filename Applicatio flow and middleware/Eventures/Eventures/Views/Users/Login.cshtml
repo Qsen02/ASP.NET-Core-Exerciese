@@ -1,0 +1,26 @@
+﻿@model Eventures.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login page";
+}
+<form asp-action="OnLogin" method="post" class="d-flex flex-column align-items-center g-2 text-center">
+    <h2 class="text-center" style="border-bottom:3px solid #AFEEEE;  padding-bottom:10px;">Login</h2>
+    <section class="d-flex flex-column align-items-center g-2">
+        <div class="d-flex flex-column align-items-center g-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
+            <div class="input">
+                <label for="Username">Username</label>
+                <input style="border-radius:5px;" type="text" placeholder="Username..." asp-for="Username" />
+            </div>
+            <div class="input">
+                <label for="Password">Password</label>
+                <input style="border-radius:5px;" type="password" placeholder="Password..." asp-for="Password" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-around align-items-center gap-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
+            <input type="checkbox"/>
+            <p>Remember me?</p>
+        </div>
+    </section>
+    <button type="submit" style="background:#AFEEEE; color:grey; margin-top:10px;">Login</button>
+    <a>Forgot your password?</a>
+    <a asp-controller="Users" asp-action="Register">Register as a new user</a>
+</form>

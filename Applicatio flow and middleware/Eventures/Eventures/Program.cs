@@ -1,4 +1,5 @@
 using Eventures.Data;
+using Eventures.Middlewares;
 using Eventures.Models;
 using Eventures.Services;
 using Microsoft.AspNetCore.Identity;
@@ -8,6 +9,19 @@ namespace Eventures
 {
     public class Program
     {
+        static void CreateRoles(IApplicationBuilder app)
+        {
+            using var scope = app.ApplicationServices.CreateScope();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            string[] roles = { "User", "Admin" };
+
+            foreach (var role in roles)
+            {
+                if (!roleManager.RoleExistsAsync(role).GetAwaiter().GetResult())
+                    roleManager.CreateAsync(new IdentityRole(role)).GetAwaiter().GetResult();
+            }
+        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +45,8 @@ namespace Eventures
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            CreateRoles(app);
+            app.UseMyCreateAdminMiddleware();
             app.UseHttpsRedirection();
             app.UseRouting();
 

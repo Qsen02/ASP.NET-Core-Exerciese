@@ -19,7 +19,12 @@ namespace Eventures.Controllers
 
         public async Task<IActionResult> Index()
         {
-            AppUser user = await _userService.GetCurrentUser();
+            AppUser? user = null;
+
+            if (User.Identity.IsAuthenticated)
+            {
+                user = await _userService.GetCurrentUser();
+            }
             return View(user);
         }
 

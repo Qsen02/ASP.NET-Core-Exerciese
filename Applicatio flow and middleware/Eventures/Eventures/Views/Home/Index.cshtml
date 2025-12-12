@@ -1,5 +1,4 @@
-﻿@model Eventures.Models.AppUser
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -15,16 +14,16 @@ else
 {
     @if (User.IsInRole("User"))
     {
-        <section class="d-flex flex-column g-2 align-items-center p-3 text-center text-bg-grey" style="background-color:#AFEEEE; border-radius:10px">
-            <h2 class="border-grey border-3 border-bottom">Welcome, @Model.FirstName!</h2>
-            <h3>Eventure wishes you an exiting expirience.</h3>
+        <section class="d-flex flex-column g-2 align-items-center p-3 text-center" style="background-color:#AFEEEE; border-radius:10px">
+            <h2 class="border-grey border-3 border-bottom">Welcome, @Model?.FirstName!</h2>
+            <h3 style="color:grey">Eventure wishes you an exiting expirience.</h3>
         </section>
     }
     else
     {
-        <section class="d-flex flex-column g-2 align-items-center p-3 text-center text-bg-grey" style="background-color:#AFEEEE; border-radius:10px">
-            <h2 class="border-grey border-3 border-bottom">Greetings, Administrator-@Model.FirstName!</h2>
-            <h3>Enjoy your work.</h3>
+        <section class="d-flex flex-column g-2 align-items-center p-3 text-center" style="background-color:#AFEEEE; border-radius:10px">
+            <h2 class="border-grey border-3 border-bottom">Greetings, Administrator-@Model?.FirstName!</h2>
+            <h3 style="color:grey">Enjoy your work.</h3>
         </section>
     }
 }

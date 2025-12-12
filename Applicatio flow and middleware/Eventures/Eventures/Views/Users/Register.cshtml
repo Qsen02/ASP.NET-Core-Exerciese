@@ -2,36 +2,43 @@
 @{
     ViewData["Title"] = "Register page";
 }
-
-<form asp-action="OnRegister" method="post" class="d-flex justify-content-center flex-wrap g-2 text-center" style="border-bottom:3px solid #AFEEEE">
-    <h2>Register</h2>
-    <div class="input">
-        <label for="Username">Username</label>
-        <input type="text" placeholder="Username..." asp-for="Username"/>
-    </div>
-    <div class="input">
-        <label for="Email">Email</label>
-        <input type="text" placeholder="Email..." asp-for="Email" />
-    </div>
-    <div class="input">
-        <label for="Password">Password</label>
-        <input type="password" placeholder="Password..." asp-for="Password" />
-    </div>
-    <div class="input" style="border-bottom:3px solid #AFEEEE">
-        <label for="Repass">Confirm password</label>
-        <input type="password" placeholder="Confirm Password..." asp-for="Repass" />
-    </div>
-    <div class="input">
-        <label for="FirstName">First Name</label>
-        <input type="text" placeholder="First Name..." asp-for="FirstName" />
-    </div>
-    <div class="input">
-        <label for="LastName">Last Name</label>
-        <input type="text" placeholder="Last Name..." asp-for="LastName" />
-    </div>
-    <div class="input" style="border-bottom:3px solid #AFEEEE">
-        <label for="UCN">UCN</label>
-        <input type="text" placeholder="Universal Citizen Number..." asp-for="UCN" />
-    </div>
-    <button type="submit" style="background:#AFEEEE color:grey">Register</button>
+<form asp-action="OnRegister" method="post" class="d-flex flex-column align-items-center g-2 text-center">
+    <h2 class="text-center" style="border-bottom:3px solid #AFEEEE;  padding-bottom:10px;">Register</h2>
+    <section class="d-flex flex-column align-items-center g-2">
+        <div class="d-flex justify-content-around align-items-center gap-2">
+            <div class="input">
+                <label for="Username">Username</label>
+                <input style="border-radius:5px;" type="text" placeholder="Username..." asp-for="Username" />
+            </div>
+            <div class="input">
+                <label for="Email">Email</label>
+                <input style="border-radius:5px;" type="text" placeholder="Email..." asp-for="Email" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-around align-items-center gap-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
+            <div class="input">
+                <label for="Password">Password</label>
+                <input style="border-radius:5px;" type="password" placeholder="Password..." asp-for="Password" />
+            </div>
+            <div class="input p-2">
+                <label for="Repass">Confirm password</label>
+                <input style="border-radius:5px;" type="password" placeholder="Confirm Password..." asp-for="Repass" />
+            </div>
+        </div>
+        <div class="d-flex justify-content-around align-items-center gap-2">
+            <div class="input">
+                <label for="FirstName">First Name</label>
+                <input style="border-radius:5px;"  type="text" placeholder="First Name..." asp-for="FirstName" />
+            </div>
+            <div class="input">
+                <label for="LastName">Last Name</label>
+                <input style="border-radius:5px;"  type="text" placeholder="Last Name..." asp-for="LastName" />
+            </div>
+        </div>
+        <div class="input" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
+            <label for="UCN">UCN</label>
+            <input style="border-radius:5px;" type="text" placeholder="Universal Citizen Number..." asp-for="UCN" />
+        </div>
+    </section>
+    <button type="submit" style="background:#AFEEEE; color:grey; margin-top:10px;">Register</button>
 </form>
