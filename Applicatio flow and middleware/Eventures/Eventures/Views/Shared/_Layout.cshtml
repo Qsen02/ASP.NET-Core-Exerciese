@@ -30,8 +30,8 @@
                                 <li class="nav-item">
                                     <details>
                                         <summary>Events</summary>
-                                        <ul style="background-color:lightgray; list-style:none; color:black">
-                                            <li><a class="nav-link" asp-controller="Events" asp-action="All">All Events</a></li>
+                                        <ul style="background-color:lightgray; list-style:none; color:black; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                                            <li><a class="nav-link" style="text-align:center" asp-controller="Events" asp-action="All">All Events</a></li>
                                         </ul>
                                     </details>
                                 </li>
@@ -47,12 +47,13 @@
                                 <li class="nav-item">
                                     <details>
                                         <summary>Events</summary>
-                                        <ul style="background-color:lightgray; list-style:none; color:black">
-                                            <li><a class="nav-link" asp-controller="Events" asp-action="All">All Events</a></li>
-                                            <li><a class="nav-link" asp-controller="Events" asp-action="Create">Create Events</a></li>
+                                        <ul style="background-color:lightgray; list-style:none; color:black; display:flex; flex-direction:column; align-items:center; gap:10px;">
+                                            <li style="text-align:center"><a class="nav-link" style="text-align:center" asp-controller="Events" asp-action="All">All Events</a></li>
+                                            <li style="text-align:center"><a class="nav-link" style="text-align:center" asp-controller="Events" asp-action="Create">Create Events</a></li>
                                         </ul>
                                     </details>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Users" asp-action="Logout">Logout</a>
                                 </li>

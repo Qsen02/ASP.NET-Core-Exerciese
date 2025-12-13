@@ -1,4 +1,5 @@
 using Eventures.Data;
+using Eventures.Filters;
 using Eventures.Middlewares;
 using Eventures.Models;
 using Eventures.Services;
@@ -36,6 +37,8 @@ namespace Eventures
             builder.Services.AddAuthentication();
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<EventService>();
+            builder.Services.AddScoped<LogActionCreateFilter>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

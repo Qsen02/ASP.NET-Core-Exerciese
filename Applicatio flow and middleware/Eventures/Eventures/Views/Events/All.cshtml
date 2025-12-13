@@ -1,0 +1,30 @@
+﻿@model List<Eventures.Models.Event>
+@{
+    ViewData["Title"] = "All events page";
+}
+<section>
+    <h2 style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">All Events</h2>
+    <table style="border-bottom:3px solid #AFEEEE; padding-bottom:10px; width:100%">
+        <thead style="border-bottom:3px solid silver; padding-bottom:10px;">
+            <th>#</th>
+            <th>Name</th>
+            <th>Place</th>
+            <th>Start</th>
+            <th>End</th>
+        </thead>
+        <tbody>
+            @if(Model != null){
+                @foreach (Event curEvent in Model)
+                {
+                  <tr>
+                      <td>@curEvent.Id</td>
+                      <td>@curEvent.Name</td>
+                      <td>@curEvent.Place</td>
+                      <td>@curEvent.Start</td>
+                      <td>@curEvent.End</td>
+                  </tr>  
+                }
+            }
+        </tbody>
+    </table>
+</section>
