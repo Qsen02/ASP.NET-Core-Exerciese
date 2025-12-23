@@ -1,0 +1,36 @@
+﻿@model Project.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Register page";
+}
+
+<form action="OnRegister" method="post" class="bg-dark d-flex flex-column gap-2 align-items-center p-2" style="border-radius:10px; width:600px; margin:50px auto">
+    <h2 class="text-white">Register</h2>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <label class="text-danger text-center">@TempData["msg"]</label>
+        }
+    }
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Useraname" class="text-white">Username</label>
+        <input type="text" asp-for="Username" style="width:90%; border-radius:10px;"/>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Email" class="text-white">Email</label>
+        <input type="text" asp-for="Email" style="width:90%; border-radius:10px;" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Password" class="text-white">Password</label>
+        <input type="password" asp-for="Password" style="width:90%; border-radius:10px;" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Repass" class="text-white">Repeat password</label>
+        <input type="password" asp-for="Repass" style="width:90%; border-radius:10px;" />
+        <span asp-validation-for="Repass" class="text-danger"></span>
+    </div>
+    <button type="submit" style="border-radius:20px; background-color: deepskyblue; border:none;padding:10px 20px 10px 20px;font-weight:bold">Register</button>
+    <p class="text-white">Already have an account? <a asp-action="Login">Login</a> here.</p>
+</form>

@@ -1,0 +1,26 @@
+﻿@model Project.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<form action="OnLogin" method="post" class="bg-dark d-flex flex-column gap-2 align-items-center p-2" style="border-radius:10px; width:600px; margin:50px auto">
+    <h2 class="text-white">Login</h2>
+    @{
+        if (TempData["msg"] != null)
+        {
+            <label class="text-danger text-center">@TempData["msg"]</label>
+        }
+    }
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Useraname" class="text-white">Username</label>
+        <input type="text" asp-for="Username" style="width:90%; border-radius:10px;" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+    <div class="d-flex flex-column align-items-center gap-1" style="width:100%">
+        <label for="Password" class="text-white">Password</label>
+        <input type="password" asp-for="Password" style="width:90%; border-radius:10px;" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" style="border-radius:20px; background-color: deepskyblue; border:none;padding:10px 20px 10px 20px;font-weight:bold">Login</button>
+    <p class="text-white">You don't have account? <a asp-action="Register">Register</a> here.</p>
+</form>

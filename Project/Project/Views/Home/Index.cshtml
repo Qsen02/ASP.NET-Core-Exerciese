@@ -1,0 +1,26 @@
+﻿@model List<Project.Models.Blog>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<section>
+    <h2>All blogs</h2>
+    <section>
+        @if (Model.Count == 0)
+        {
+            <h3>No blogs yet. Be the first one!</h3>
+        }
+        else
+        {
+            @foreach (Blog blog in Model)
+            {
+              <article>
+                  <h3>@blog.Title</h3>
+                  <p>Author: @blog.Author.UserName</p>
+                  <p>Created at: @blog.CreatedDate</p>
+                  <a asp-controller="Blogs" asp-route-id=@blog.Id asp-action="Details">Details</a>
+              </article>  
+            }
+        }
+    </section>
+</section>
