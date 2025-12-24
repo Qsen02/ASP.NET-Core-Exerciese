@@ -3,22 +3,27 @@
     ViewData["Title"] = "Home Page";
 }
 
-<section>
-    <h2>All blogs</h2>
-    <section>
+<section class="d-flex flex-column gap-2 align-items-center">
+    <h2 class="text-center">All blogs</h2>
+    <section class="d-flex justify-content-center gap-4 flex-wrap" style="width:90%">
         @if (Model.Count == 0)
         {
-            <h3>No blogs yet. Be the first one!</h3>
+            <h3 class="text-center">No blogs yet. Be the first one!</h3>
         }
         else
         {
             @foreach (Blog blog in Model)
             {
-              <article>
-                  <h3>@blog.Title</h3>
-                  <p>Author: @blog.Author.UserName</p>
-                  <p>Created at: @blog.CreatedDate</p>
-                  <a asp-controller="Blogs" asp-route-id=@blog.Id asp-action="Details">Details</a>
+              <article class="bg-dark d-flex flex-column gap-2 align-items-center p-4" style="border-radius:20px; flex-basis:30%;">
+                  <h3 class="text-white">@blog.Title</h3>
+                  <p class="text-white">Author: @blog.Author.UserName</p>
+                    <a style="border-radius:20px; 
+                    background-color: deepskyblue; 
+                    border:none;padding:10px 20px 10px 20px;
+                    font-weight:bold; 
+                    text-decoration:none; 
+                    color:inherit;" 
+                    asp-controller="Blog" asp-route-id=@blog.Id asp-action="Details">Details</a>
               </article>  
             }
         }

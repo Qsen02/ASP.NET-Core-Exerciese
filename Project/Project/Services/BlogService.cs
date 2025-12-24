@@ -14,12 +14,12 @@ namespace Project.Services
 
         public async Task<List<Blog>> GetAllBlogs() 
         {
-            List<Blog> blogs = await _context.Blogs.ToListAsync();
+            List<Blog> blogs = await _context.Blogs.Include(el=>el.Author).ToListAsync();
             return blogs;
         }
         public async Task<Blog> GetBlogById(int blogId) 
         {
-            Blog blog = await _context.Blogs.Include(el=>el.Author).FirstOrDefaultAsync(el=>el.Id == blogId);
+            Blog blog = await _context.Blogs.Include(el => el.Author).FirstOrDefaultAsync(el => el.Id == blogId);
             return blog;
         }
         public async Task<Blog> CreateBlog(string title, string content, string userId) 
@@ -28,14 +28,14 @@ namespace Project.Services
             {
                 Title = title,
                 Content = content,
-                CreatedDate = DateTime.UtcNow,
-                AuthorId = userId
+                CreatedDate = DateTime.Now,
+                AuthorId = userId,
             };
             _context.Blogs.Add(newBlog);
             await _context.SaveChangesAsync();
             return newBlog;
         }
-        public async void DeleteBlog(int blogId) 
+        public async Task DeleteBlog(int blogId) 
         {
             await _context.Blogs.Where(el=>el.Id == blogId).ExecuteDeleteAsync();
         }

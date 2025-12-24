@@ -1,0 +1,33 @@
+﻿@model Project.ViewModels.DetailsViewModel
+@{
+    ViewData["Title"] = "Blog details page";
+}
+
+<section class="d-flex flex-column gap-4 bg-dark p-3 align-items-center" style="margin:50px auto; width:70%; border-radius:20px;">
+    <div class="d-flex flex-column gap-2 align-items-center">
+        <h3 class="text-white text-center">@Model.Blog.Title</h3>
+        <p class="text-white text-center">Author: @Model.Blog.Author.UserName</p>
+        <p class="text-white text-center">Created at: @Model.Blog.CreatedDate</p>
+    </div>
+    <p class="text-white text-center" style="word-wrap:break-word; width:90%;">@Model.Blog.Content</p>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (Model.User.Id == Model.Blog.Author.Id)
+        {
+            <div class="d-flex gap-5 justify-content-center ">
+                <a style="border-radius:20px;
+                   background-color: deepskyblue;
+                   border:none;padding:10px 20px 10px 20px;
+                   font-weight:bold;
+                   text-decoration:none;
+                   color:inherit;" asp-route-id="@Model.Blog.Id" asp-controller="Blog" asp-action="Edit">Edit</a>
+                <a style="border-radius:20px;
+                   background-color: deepskyblue;
+                   border:none;padding:10px 20px 10px 20px;
+                   font-weight:bold;
+                   text-decoration:none;
+                   color:inherit;" asp-route-id="@Model.Blog.Id" asp-controller="Blog" asp-action="Delete">Delete</a>
+            </div>
+        }
+    }
+</section>

@@ -8,13 +8,11 @@ namespace Project.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly UserService userService;
         private readonly BlogService blogService;
 
-        public HomeController(ILogger<HomeController> logger,UserService userService, BlogService blogService)
+        public HomeController(ILogger<HomeController> logger, BlogService blogService)
         {
             _logger = logger;
-            this.userService = userService;
             this.blogService = blogService;
         }
 
