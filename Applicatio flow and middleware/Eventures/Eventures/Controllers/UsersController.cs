@@ -30,22 +30,38 @@ namespace Eventures.Controllers
         [HttpPost]
         public async Task<IActionResult> OnRegister([Bind("Username,Email,Password,Repass,FirstName,LastName,UCN")] RegisterViewModel user) 
         {
-            if (ModelState.IsValid) 
+            try
             {
-                await _userService.Register(user.Username, user.FirstName, user.LastName, user.Password, user.Email, user.UCN);
-                return Redirect("/Home/Index");
+                if (ModelState.IsValid)
+                {
+                    await _userService.Register(user.Username, user.FirstName, user.LastName, user.Password, user.Email, user.UCN);
+                    return Redirect("/Home/Index");
+                }
+                return View("Register", user);
             }
-            return View("Register",user);
+            catch (Exception err) 
+            {
+                TempData["Message"]=err.Message;
+                return View("Register", user);
+            }
         }
         [HttpPost]
         public async Task<IActionResult> OnLogin([Bind("Username,Password")] LoginViewModel user) 
         {
-            if (ModelState.IsValid)
+            try
             {
-                await _userService.Login(user.Username,user.Password);
-                return Redirect("/Home/Index");
+                if (ModelState.IsValid)
+                {
+                    await _userService.Login(user.Username, user.Password);
+                    return Redirect("/Home/Index");
+                }
+                return View("Login", user);
             }
-            return View("Login", user);
+            catch (Exception err)
+            {
+                TempData["Message"] = err.Message;
+                return View("Login", user);
+            }
         }
     }
 }

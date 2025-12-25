@@ -9,30 +9,36 @@
             <div class="input">
                 <label for="Name">Name</label>
                 <input style="border-radius:5px;" type="text" placeholder="Event name..." asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="input">
                 <label for="Place">Place</label>
                 <input style="border-radius:5px;" type="text" placeholder="Place of the event..." asp-for="Place" />
+                <span asp-validation-for="Place" class="text-danger"></span>
             </div>
         </div>
         <div class="d-flex justify-content-around align-items-center gap-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
             <div class="input">
                 <label for="Start">Start</label>
                 <input style="border-radius:5px;" type="datetime-local" placeholder="Start date..." asp-for="Start" />
+                <span asp-validation-for="Start" class="text-danger"></span>
             </div>
             <div class="input p-2">
                 <label for="End">End</label>
                 <input style="border-radius:5px;" type="datetime-local" placeholder="End date..." asp-for="End" />
+                <span asp-validation-for="End" class="text-danger"></span>
             </div>
         </div>
         <div class="d-flex justify-content-around align-items-center gap-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
             <div class="input">
                 <label for="TotalTickets">TotalTickets</label>
                 <input style="border-radius:5px;" type="number" placeholder="Total tickets..." asp-for="TotalTickets" />
+                <span asp-validation-for="TotalTickets" class="text-danger"></span>
             </div>
             <div class="input">
                 <label for="PricePerTicket">PricePerTicket</label>
                 <input style="border-radius:5px;" type="number" placeholder="Price per ticket..." asp-for="PricePerTicket" />
+                <span asp-validation-for="PricePerTicket" class="text-danger"></span>
             </div>
         </div>
     </section>

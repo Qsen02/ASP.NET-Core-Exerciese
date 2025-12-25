@@ -4,40 +4,51 @@
 }
 <form asp-action="OnRegister" method="post" class="d-flex flex-column align-items-center g-2 text-center">
     <h2 class="text-center" style="border-bottom:3px solid #AFEEEE;  padding-bottom:10px;">Register</h2>
+    @if (TempData["Message"] != null)
+    {
+      <p class="text-danger">@TempData["Message"]</p>   
+    }
     <section class="d-flex flex-column align-items-center g-2">
         <div class="d-flex justify-content-around align-items-center gap-2">
             <div class="input">
                 <label for="Username">Username</label>
                 <input style="border-radius:5px;" type="text" placeholder="Username..." asp-for="Username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
             </div>
             <div class="input">
                 <label for="Email">Email</label>
                 <input style="border-radius:5px;" type="text" placeholder="Email..." asp-for="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>
         <div class="d-flex justify-content-around align-items-center gap-2" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
             <div class="input">
                 <label for="Password">Password</label>
                 <input style="border-radius:5px;" type="password" placeholder="Password..." asp-for="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="input p-2">
                 <label for="Repass">Confirm password</label>
                 <input style="border-radius:5px;" type="password" placeholder="Confirm Password..." asp-for="Repass" />
+                <span asp-validation-for="Repass" class="text-danger"></span>
             </div>
         </div>
         <div class="d-flex justify-content-around align-items-center gap-2">
             <div class="input">
                 <label for="FirstName">First Name</label>
                 <input style="border-radius:5px;"  type="text" placeholder="First Name..." asp-for="FirstName" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="input">
                 <label for="LastName">Last Name</label>
                 <input style="border-radius:5px;"  type="text" placeholder="Last Name..." asp-for="LastName" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="input" style="border-bottom:3px solid #AFEEEE; padding-bottom:10px;">
             <label for="UCN">UCN</label>
             <input style="border-radius:5px;" type="text" placeholder="Universal Citizen Number..." asp-for="UCN" />
+            <span asp-validation-for="UCN" class="text-danger"></span>
         </div>
     </section>
     <button type="submit" style="background:#AFEEEE; color:grey; margin-top:10px;">Register</button>
